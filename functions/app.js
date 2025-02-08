@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import router from express.Router();
 import connectDB from './config/db.js';
 import userRoutes from './routes/UserRoutes/userRoutes.js';
 import adminRoutes from './routes/AdminRoutes/adminRoutes.js';
@@ -25,6 +26,7 @@ app.get('/server-check', (req, res) => {
   res.status(200).json({ message: 'Server is running fine!', status: 'OK' });
 });
 // app.use('/api', routes);
+app.use("/.netlify/functions/app", router);
 app.use('/api/user', userRoutes);
 app.use('/api/admin', adminRoutes);
 
